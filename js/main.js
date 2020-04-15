@@ -122,7 +122,7 @@ map.once('style.load', function(e) {
     map.addControl(new mapboxgl.NavigationControl());
     map.on('click', function(e) {
         var features = map.queryRenderedFeatures(e.point, {
-            layers: ['nurses']
+            layers: [active_layer]
         });
         if (!features.length) {
             return;
