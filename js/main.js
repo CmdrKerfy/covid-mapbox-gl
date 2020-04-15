@@ -4,21 +4,32 @@ var bounds = [
 
 ]
 var map = new mapboxgl.Map({
-container: 'map',
-style: 'mapbox://styles/kerfy/ck8sadhtn0uip1inskm9tqsa1',
-//center: 
-//zoom:
-//minZoom:
-//maxZoom:
-//pitch:
-//maxBounds: bounds
+    container: 'map',
+    style: 'mapbox://styles/kerfy/ck8sadhtn0uip1inskm9tqsa1',
+    //center: 
+    //zoom:
+    //minZoom:
+    //maxZoom:
+    //pitch:
+    //maxBounds: bounds
 });
 
+var active_layer = 'doctors';
 
+function filterBy(week) {
+    //var filters = ['==', 'week', week];
+    //map.setFilter('earthquake-circles', filters);
+    //map.setFilter('earthquake-labels', filters);
+
+    // Set the label to the week
+    document.getElementById('week').textContent = week;
+}
+
+// ADD LAYERS
 function init() {
     map.addSource('doctors', {
         type: 'geojson',
-        data: 'https://raw.githubusercontent.com/CmdrKerfy/covid-mapbox-gl/master/geojson/Doctor_Console.geojson',
+        data: 'https://raw.githubusercontent.com/CmdrKerfy/covid-mapbox-gl/master/geojson/Doctor_Capacity.geojson',
         buffer: 0,
         maxzoom: 12
     });
@@ -36,45 +47,50 @@ function init() {
         'id': 'doctors',
         'type': 'circle',
         'source': 'doctors',
+        'layout': {
+            'visibility': 'visible'
+        },
         'paint': {
             'circle-color': {
-                property: 'Week',
-                type: 'interval',
+                property: 'Week0',
+                //type: 'interval',
                 stops: [
-                    [0, 'yellow']
-                    [1, 'orange'],
-                    [2, 'red'],
-                    [3, 'blue'],
-                    [4, 'purple']
+                    [0, 'light blue']
                 ]
             },
             'circle-radius': {
-                property: 'Week',
+                property: 'Week0',
                 base: 3,
                 type: 'interval',
                 stops: [
-                    [1, 3],
-                    [2, 8],
-                    [3, 12]
+                    [0, 0],
+                    [5, 5],
+                    [25, 10],
+                    [50, 25],
+                    [75, 35],
+                    [100, 45],
+                    [150, 60]
                 ]
             },
             'circle-opacity': 0.8,
             'circle-blur': 0.5
         },
-        'filter': ['>=', 'Week', 1]
+        'filter': ['>=', 'Week0', 1]
     }, 'waterway-label');
 
     map.addLayer({
         'id': 'nurses',
         'type': 'circle',
         'source': 'nurses',
+        'layout': {
+            'visibility': 'none'
+        },
         'paint': {
             'circle-color': {
                 property: 'Week0',
-                type: 'interval',
+                //type: 'interval',
                 stops: [
-                    [1, 'orange'],
-                    [2, 'red']
+                    [1, 'light green']
                 ]
             },
             'circle-radius': {
@@ -82,9 +98,14 @@ function init() {
                 base: 3,
                 type: 'interval',
                 stops: [
+                    [0, 0],
                     [1, 3],
-                    [2, 8],
-                    [3, 12]
+                    [5, 5],
+                    [25, 10],
+                    [50, 25],
+                    [75, 35],
+                    [100, 45],
+                    [150, 50]
                 ]
             },
             'circle-opacity': 0.8,
@@ -94,12 +115,13 @@ function init() {
     }, 'waterway-label');
 };
 
+// ADD POPUPS
 map.once('style.load', function(e) {
     init();
     map.addControl(new mapboxgl.NavigationControl());
     map.on('click', function(e) {
         var features = map.queryRenderedFeatures(e.point, {
-            layers: ['veh-incd-1', 'veh-incd-2']
+            layers: ['nurses']
         });
         if (!features.length) {
             return;
@@ -108,13 +130,117 @@ map.once('style.load', function(e) {
 
         var popup = new mapboxgl.Popup()
             .setLngLat(map.unproject(e.point))
-            .setHTML('<h3>Collision Detail</h3>' +
+            .setHTML('<h3>More Information</h3>' +
                 '<ul>' +
-                '<li>Year: <b>' + feature.properties.YEAR + '</b></li>' +
-                '<li>Pedestrian Injuries: <b>' + feature.properties.PED_INJ + '</b></li>' +
-                '<li>Pedestrian Fatalities: <b>' + feature.properties.PED_KIL + '</b></li>' +
-                '<li>Cyclist Injuries: <b>' + feature.properties.CYC_INJ + '</b></li>' +
-                '<li>Cyclist Fatalities: <b>' + feature.properties.CYC_KIL + '</b></li>' +
+                '<li>Province: <b>' + feature.properties.level4name + '</b></li>' +
+                '<li>County: <b>' + feature.properties.level5name + '</b></li>' +
+                '<li>Current: <b>' + feature.properties.Week0 + '</b></li>' +
+                '<li>Week 1: <b>' + feature.properties.Week1 + '</b></li>' +
+                '<li>Week 2: <b>' + feature.properties.Week2 + '</b></li>' +
+                '<li>Week 3: <b>' + feature.properties.Week3 + '</b></li>' +
+                '<li>Week 4: <b>' + feature.properties.Week4 + '</b></li>' +
+                '<li>Week 5: <b>' + feature.properties.Week5 + '</b></li>' +
+                '<li>Week 6: <b>' + feature.properties.Week6 + '</b></li>' +
                 '</ul>')
             .addTo(map);
+    })
+});
+
+//HIDE LOADING BAR 
+map.on('data', function(e) {
+    if (e.dataType === 'source' && e.sourceId === 'doctors') {
+        document.getElementById("loader").style.visibility = "hidden";
+    }
+})
+
+// TIME SLIDER PROPERTIES
+var prop = document.getElementById('prop');
+prop.addEventListener('change', function() {
+    console.log('dropdown changed');
+    console.log(prop.value);
+
+    console.log('active layer: ');
+    console.log(active_layer);
+
+    var clickedLayer = prop.value;
+    // e.preventDefault();
+    // e.stopPropagation();
+
+    var visibility = map.getLayoutProperty(clickedLayer, 'visibility');
+
+    if (visibility === 'visible') {
+        map.setLayoutProperty(clickedLayer, 'visibility', 'none');
+        this.className = '';
+    } else {
+        this.className = 'active';
+        map.setLayoutProperty(clickedLayer, 'visibility', 'visible');
+        map.setLayoutProperty(active_layer, 'visibility', 'none');
+        active_layer = clickedLayer;
+    }
+
+});
+
+
+// Set filter to first week
+filterBy(0);
+
+document
+    .getElementById('slider')
+    .addEventListener('input', function(e) {
+        var week = parseInt(e.target.value, 10);
+        console.log("print week from slider");
+        console.log(week);
+
+        property_val = "Week" + week
+
+        console.log("property_val");
+        console.log(property_val);
+
+        map.setPaintProperty('doctors', 'circle-radius', {
+            property: property_val,
+            base: 3,
+            type: 'interval',
+            stops: [
+                [0, 0],
+                [1, 3],
+                [10, 5],
+                [25, 10],
+                [50, 25],
+                [75, 35],
+                [100, 45],
+                [150, 60]
+            ]
+        });
+
+        map.setPaintProperty('nurses', 'circle-radius', {
+            property: property_val,
+            base: 3,
+            type: 'interval',
+            stops: [
+                [0, 0],
+                [1, 3],
+                [5, 5],
+                [25, 10],
+                [50, 25],
+                [75, 35],
+                [100, 45],
+                [150, 50]
+            ]
+        });
+
+        filterBy(week);
     });
+
+
+
+// 'circle-radius': {
+//     property: 'Week0',
+//     base: 3,
+//     type: 'interval',
+//     stops: [
+//         [1, 3],
+//         [50, 8],
+//         [100, 10],
+//         [150, 15]
+//     ]
+// },
