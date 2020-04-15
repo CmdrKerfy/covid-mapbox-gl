@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src='https://api.mapbox.com/mapbox-gl-js/v1.9.1/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v1.9.1/mapbox-gl.css' rel='stylesheet' />
+
+    <title>Mapbox-gl Test</title>
+</head>
+
+
+<body>
+
+    <div id='map' style='width: 850px; height: 500px;'></div>
+        <script>
+
+        // Add Basemap
+        mapboxgl.accessToken = 'pk.eyJ1Ijoia2VyZnkiLCJhIjoiY2szOTE0dG43MDE4dDNqbzZ4ajdld3A1eCJ9.IYIY3O7YU3fZvR2izUZUGQ';
+        var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/kerfy/ck8sadhtn0uip1inskm9tqsa1'
+        });
+
+        // Add Data
+        map.addSource('doctorcap', {
+            type: 'geojson',
+            data: 'geojson/Doctor_Capacity.geojson'
+        });
+
+        </script>
+
+</body>
+
+</html>
