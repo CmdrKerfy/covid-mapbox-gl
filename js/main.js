@@ -1,15 +1,16 @@
 // ADD BASEMAP
 mapboxgl.accessToken = 'pk.eyJ1Ijoia2VyZnkiLCJhIjoiY2szOTE0dG43MDE4dDNqbzZ4ajdld3A1eCJ9.IYIY3O7YU3fZvR2izUZUGQ';
-var bounds = [
-
-]
+// var bounds = [
+//     [31.113927, -5.198409], // Southwest coordinates
+//     [44.797660, 7.994002] // Northeast coordinates
+// ]
 var map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/kerfy/ck8sadhtn0uip1inskm9tqsa1',
-    //center: 
-    //zoom:
-    //minZoom:
-    //maxZoom:
+    center: [37.477968, 0.090719],
+    zoom: 5.75,
+    minZoom: 5.50,
+    maxZoom: 7,
     //pitch:
     //maxBounds: bounds
 });
