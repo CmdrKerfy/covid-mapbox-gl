@@ -18,7 +18,7 @@ style: 'mapbox://styles/kerfy/ck8sadhtn0uip1inskm9tqsa1',
 function init() {
     map.addSource('doctors', {
         type: 'geojson',
-        data: 'https://raw.githubusercontent.com/CmdrKerfy/covid-mapbox-gl/master/geojson/Doctor_Capacity.geojson',
+        data: 'https://raw.githubusercontent.com/CmdrKerfy/covid-mapbox-gl/master/geojson/Doctor_Console.geojson',
         buffer: 0,
         maxzoom: 12
     });
@@ -38,7 +38,39 @@ function init() {
         'source': 'doctors',
         'paint': {
             'circle-color': {
-                property: 'CYC_INJ',
+                property: 'Week',
+                type: 'interval',
+                stops: [
+                    [0, 'yellow']
+                    [1, 'orange'],
+                    [2, 'red'],
+                    [3, 'blue'],
+                    [4, 'purple']
+                ]
+            },
+            'circle-radius': {
+                property: 'Week',
+                base: 3,
+                type: 'interval',
+                stops: [
+                    [1, 3],
+                    [2, 8],
+                    [3, 12]
+                ]
+            },
+            'circle-opacity': 0.8,
+            'circle-blur': 0.5
+        },
+        'filter': ['>=', 'Week', 1]
+    }, 'waterway-label');
+
+    map.addLayer({
+        'id': 'nurses',
+        'type': 'circle',
+        'source': 'nurses',
+        'paint': {
+            'circle-color': {
+                property: 'Week0',
                 type: 'interval',
                 stops: [
                     [1, 'orange'],
@@ -46,7 +78,7 @@ function init() {
                 ]
             },
             'circle-radius': {
-                property: 'CYC_INJ',
+                property: 'Week0',
                 base: 3,
                 type: 'interval',
                 stops: [
@@ -58,64 +90,7 @@ function init() {
             'circle-opacity': 0.8,
             'circle-blur': 0.5
         },
-        'filter': ['>=', 'CYC_INJ', 1]
-    }, 'waterway-label');
-
-    /*
-    map.addLayer({
-        'id': 'nurses',
-        'type': 'circle',
-        'source': 'nurses',
-        'paint': {
-            'circle-color': {
-                property: 'CYC_INJ',
-                type: 'interval',
-                stops: [
-                    [1, 'orange'],
-                    [2, 'red']
-                ]
-            },
-            'circle-radius': {
-                property: 'CYC_INJ',
-                base: 3,
-                type: 'interval',
-                stops: [
-                    [1, 3],
-                    [2, 8],
-                    [3, 12]
-                ]
-            },
-            'circle-opacity': 0.8,
-            'circle-blur': 0.5
-        },
-        'filter': ['>=', 'CYC_INJ', 1]
-    }, 'waterway-label');
-    */
-
-    map.addLayer({
-        'id': 'veh-incd-base-1',
-        'type': 'circle',
-        'source': 'veh-incidents-1',
-        'paint': {
-            'circle-color': 'yellow',
-            'circle-radius': 3,
-            'circle-opacity': 0.3,
-            'circle-blur': 1
-        },
-        'filter': ['<', 'CYC_INJ', 1]
-    }, 'waterway-label');
-
-    map.addLayer({
-        'id': 'nurses',
-        'type': 'circle',
-        'source': 'nurses',
-        'paint': {
-            'circle-color': 'yellow',
-            'circle-radius': 3,
-            'circle-opacity': 0.3,
-            'circle-blur': 1
-        },
-        'filter': ['<', 'CYC_INJ', 1]
+        'filter': ['>=', 'Week0', 1]
     }, 'waterway-label');
 };
 
@@ -143,17 +118,3 @@ map.once('style.load', function(e) {
                 '</ul>')
             .addTo(map);
     });
-
-
-// ADD GEOJSON FILES
-map.on('load', function() {
-    var url = 'https://raw.githubusercontent.com/CmdrKerfy/covid-mapbox-gl/master/geojson/Doctor_Capacity.geojson';
-    map.addSource('doctors', { type: 'geojson', data: url});
-  });
-
-
-$.getJSON('geojson/Doctor_Capacity.geojson', function (geojson) {
-    geojson.features.forEach(function (marker) {
-        // etc
-    });
-});
