@@ -12,14 +12,14 @@ body {
 
 .map-overlay {
     position: absolute;
-    width: 250px;
+    width: 210px;
     top: 0;
     left: 10px;
     padding: 10px;
-    margin-left: 5px;
-    margin-top: 2px;
-    margin-bottom: 2px;
-    margin-right: 5px;
+    margin-left: 10px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    margin-right: 10px;
     z-index: 1;
 }
 
@@ -27,7 +27,7 @@ body {
     background: rgba(0, 0, 0, .8);
     color: #fff;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.10);
-    border-radius: 3px;
+    border-radius: 15px;
     padding: 10px;
     margin-bottom: 10px;
     z-index: 1;
@@ -35,7 +35,7 @@ body {
 
 .map-overlay-inner fieldset {
     border: none;
-    padding: 50;
+    padding: 20px;
     margin: 0 0 10px;
     z-index: 1;
 }
@@ -88,7 +88,6 @@ body {
     text-align: left;
 }
 
-,
 #menu li {
     margin: 0;
     padding: 0;
@@ -123,6 +122,13 @@ svg rect {
     fill: #FF6700;
 }
 
+.map-overlay h2 {
+    line-height: 24px;
+    display: block;
+    margin: 0 0 10px;
+    text-align: center;
+}
+
 
 /* .map-overlay {
     font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
@@ -139,12 +145,6 @@ svg rect {
     border-radius: 3px;
     padding: 10px;
     margin-bottom: 10px;
-}
-
-.map-overlay h2 {
-    line-height: 24px;
-    display: block;
-    margin: 0 0 10px;
 }
 
 .map-overlay .legend .bar {
