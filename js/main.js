@@ -131,18 +131,25 @@ map.once('style.load', function(e) {
 
         var popup = new mapboxgl.Popup()
             .setLngLat(map.unproject(e.point))
-            .setHTML('<h3>More Information</h3>' +
-                '<ul>' +
-                '<li>Province: <b>' + feature.properties.level4name + '</b></li>' +
-                '<li>County: <b>' + feature.properties.level5name + '</b></li>' +
-                '<li>Current: <b>' + feature.properties.Week0 + '</b></li>' +
-                '<li>Week 1: <b>' + feature.properties.Week1 + '</b></li>' +
-                '<li>Week 2: <b>' + feature.properties.Week2 + '</b></li>' +
-                '<li>Week 3: <b>' + feature.properties.Week3 + '</b></li>' +
-                '<li>Week 4: <b>' + feature.properties.Week4 + '</b></li>' +
-                '<li>Week 5: <b>' + feature.properties.Week5 + '</b></li>' +
-                '<li>Week 6: <b>' + feature.properties.Week6 + '</b></li>' +
-                '</ul>')
+            .setHTML(
+                'Province: <b>' + feature.properties.level4name + '</b>' +
+                '</br>' +
+                'County: <b>' + feature.properties.level5name + '</b>' +
+                '</br>' +
+                'Current: <b>' + feature.properties.Week0 + '</b>' +
+                '</br>' +
+                'Week 1: <b>' + feature.properties.Week1 + '</b>' +
+                '</br>' +
+                'Week 2: <b>' + feature.properties.Week2 + '</b>' +
+                '</br>' +
+                'Week 3: <b>' + feature.properties.Week3 + '</b>' +
+                '</br>' +
+                'Week 4: <b>' + feature.properties.Week4 + '</b>' +
+                '</br>' +
+                'Week 5: <b>' + feature.properties.Week5 + '</b>' +
+                '</br>' +
+                'Week 6: <b>' + feature.properties.Week6 + '</b>'
+            )
             .addTo(map);
     })
 });
