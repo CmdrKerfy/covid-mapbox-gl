@@ -10,7 +10,7 @@ var map = new mapboxgl.Map({
     //pitch:
 });
 
-var active_layer = 'doctors';
+var active_layer = 'PLHIV';
 
 function filterBy(week) {
     // Set the label to the week
@@ -35,7 +35,6 @@ function init() {
         buffer: 0,
         maxzoom: 12
     });
-
     map.addSource('nurses', {
         type: 'geojson',
         data: 'https://raw.githubusercontent.com/CmdrKerfy/covid-mapbox-gl/master/geojson/Nurse_Capacity.geojson',
@@ -50,14 +49,12 @@ function init() {
         buffer: 0,
         maxzoom: 12
     });
-
     map.addSource('visitsGenPOP', {
         type: 'geojson',
         data: 'https://raw.githubusercontent.com/CmdrKerfy/covid-mapbox-gl/master/geojson/VisitsGenPOP.geojson',
         buffer: 0,
         maxzoom: 12
     });
-
     map.addSource('visitsTotalPOP', {
         type: 'geojson',
         data: 'https://raw.githubusercontent.com/CmdrKerfy/covid-mapbox-gl/master/geojson/VisitsTotalPOP.geojson',
@@ -65,24 +62,42 @@ function init() {
         maxzoom: 12
     });
 
-    // Healthcare Seen
+    // Healthcare PLHIV Seen
     map.addSource('PLHIVseenDoc', {
         type: 'geojson',
         data: 'https://raw.githubusercontent.com/CmdrKerfy/covid-mapbox-gl/master/geojson/PLHIVseenDoc.geojson',
         buffer: 0,
         maxzoom: 12
     });
-
     map.addSource('PLHIVseenMO', {
         type: 'geojson',
         data: 'https://raw.githubusercontent.com/CmdrKerfy/covid-mapbox-gl/master/geojson/PLHIVseenMO.geojson',
         buffer: 0,
         maxzoom: 12
     });
-
     map.addSource('PLHIVseenNurse', {
         type: 'geojson',
         data: 'https://raw.githubusercontent.com/CmdrKerfy/covid-mapbox-gl/master/geojson/PLHIVseenNurse.geojson',
+        buffer: 0,
+        maxzoom: 12
+    });
+
+    // Healthcare Total Population Seen
+    map.addSource('TotalPOPseenDoc', {
+        type: 'geojson',
+        data: 'https://raw.githubusercontent.com/CmdrKerfy/covid-mapbox-gl/master/geojson/TotalPOPseenDoc.geojson',
+        buffer: 0,
+        maxzoom: 12
+    });
+    map.addSource('TotalPOPseenMO', {
+        type: 'geojson',
+        data: 'https://raw.githubusercontent.com/CmdrKerfy/covid-mapbox-gl/master/geojson/TotalPOPseenMO.geojson',
+        buffer: 0,
+        maxzoom: 12
+    });
+    map.addSource('TotalPOPseenNurse', {
+        type: 'geojson',
+        data: 'https://raw.githubusercontent.com/CmdrKerfy/covid-mapbox-gl/master/geojson/TotalPOPseenNurse.geojson',
         buffer: 0,
         maxzoom: 12
     });
@@ -128,7 +143,7 @@ function init() {
         'type': 'circle',
         'source': 'doctors',
         'layout': {
-            'visibility': 'visible'
+            'visibility': 'none'
         },
         'paint': {
             'circle-color': {
@@ -439,6 +454,131 @@ function init() {
         'filter': ['>=', 'Week1', 1]
     })
 
+    // Total POP Seen by a Doctor
+    map.addLayer({
+        'id': 'TotalPOPseenDoc',
+        'type': 'circle',
+        'source': 'TotalPOPseenDoc',
+        'layout': {
+            'visibility': 'none'
+        },
+        'paint': {
+            'circle-color': {
+                property: 'Week1',
+                //type: 'interval',
+                stops: [
+                    [0, 'black']
+                ]
+            },
+            'circle-radius': {
+                property: 'Week1',
+                base: 3,
+                type: 'interval',
+                stops: [
+                    [0, 0],
+                    [30, 3],
+                    [50, 5],
+                    [75, 10],
+                    [100, 13],
+                    [125, 15],
+                    [150, 17],
+                    [200, 20],
+                    [250, 25],
+                    [300, 27],
+                    [400, 30],
+                    [500, 33]
+                ]
+            },
+            'circle-opacity': 0.8,
+            'circle-blur': 0.25
+        },
+        'filter': ['>=', 'Week1', 1]
+    }),
+
+    // Total POP Seen by a Medical Officer
+    map.addLayer({
+        'id': 'TotalPOPseenMO',
+        'type': 'circle',
+        'source': 'TotalPOPseenMO',
+        'layout': {
+            'visibility': 'none'
+        },
+        'paint': {
+            'circle-color': {
+                property: 'Week1',
+                //type: 'interval',
+                stops: [
+                    [0, 'purple']
+                ]
+            },
+            'circle-radius': {
+                property: 'Week1',
+                base: 3,
+                type: 'interval',
+                stops: [
+                    [0, 0],
+                    [20, 3],
+                    [30, 5],
+                    [40, 10],
+                    [50, 13],
+                    [60, 15],
+                    [70, 17],
+                    [80, 20],
+                    [90, 25],
+                    [100, 27],
+                    [150, 30],
+                    [250, 35]
+                ]
+            },
+            'circle-opacity': 0.8,
+            'circle-blur': 0.25
+        },
+        'filter': ['>=', 'Week1', 1]
+    }),
+
+    //  Total POP Seen by a Nurse
+    map.addLayer({
+        'id': 'TotalPOPseenNurse',
+        'type': 'circle',
+        'source': 'TotalPOPseenNurse',
+        'layout': {
+            'visibility': 'none'
+        },
+        'paint': {
+            'circle-color': {
+                property: 'Week1',
+                //type: 'interval',
+                stops: [
+                    [0, 'orange']
+                ]
+            },
+            'circle-radius': {
+                property: 'Week1',
+                base: 3,
+                type: 'interval',
+                stops: [
+                    [0, 0],
+                    [20, 3],
+                    [30, 5],
+                    [40, 10],
+                    [50, 13],
+                    [60, 15],
+                    [70, 17],
+                    [80, 20],
+                    [90, 25],
+                    [100, 27],
+                    [150, 30],
+                    [250, 33],
+                    [300, 35],
+                    [400, 37]
+                ]
+            },
+            'circle-opacity': 0.8,
+            'circle-blur': 0.25
+        },
+        'filter': ['>=', 'Week1', 1]
+    })
+
 };
 
 //HIDE LOADING BAR 
@@ -678,6 +818,67 @@ document
                 [20, 17],
                 [25, 20],
                 [30, 25]
+            ]
+        });
+
+        // Total Population Seeing Specialists
+        map.setPaintProperty('TotalPOPseenDoc', 'circle-radius', {
+            property: property_val,
+            base: 3,
+            type: 'interval',
+            stops: [
+                [0, 0],
+                [30, 3],
+                [50, 5],
+                [75, 10],
+                [100, 13],
+                [125, 15],
+                [150, 17],
+                [200, 20],
+                [250, 25],
+                [300, 27],
+                [400, 30],
+                [500, 33]
+            ]
+        });
+        map.setPaintProperty('TotalPOPseenMO', 'circle-radius', {
+            property: property_val,
+            base: 3,
+            type: 'interval',
+            stops: [
+                [0, 0],
+                [20, 3],
+                [30, 5],
+                [40, 10],
+                [50, 13],
+                [60, 15],
+                [70, 17],
+                [80, 20],
+                [90, 25],
+                [100, 27],
+                [150, 30],
+                [250, 35]
+            ]
+        });
+        map.setPaintProperty('TotalPOPseenNurse', 'circle-radius', {
+            property: property_val,
+            base: 3,
+            type: 'interval',
+            stops: [
+                [0, 0],
+                [20, 3],
+                [30, 5],
+                [40, 10],
+                [50, 13],
+                [60, 15],
+                [70, 17],
+                [80, 20],
+                [90, 25],
+                [100, 27],
+                [150, 30],
+                [250, 33],
+                [300, 35],
+                [400, 37]
             ]
         });
 
