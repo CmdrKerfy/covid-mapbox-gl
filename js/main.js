@@ -2,7 +2,7 @@
 mapboxgl.accessToken = 'pk.eyJ1Ijoia2VyZnkiLCJhIjoiY2szOTE0dG43MDE4dDNqbzZ4ajdld3A1eCJ9.IYIY3O7YU3fZvR2izUZUGQ';
 var map = new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/kerfy/ck8sadhtn0uip1inskm9tqsa1',
+    style: 'mapbox://styles/kerfy/ck92uv5lh0o9w1imxn0kbjim9',
     center: [37.477968, 0.090719],
     zoom: 5.75,
     minZoom: 5.50,
@@ -185,7 +185,7 @@ function init() {
                 property: 'Week1',
                 //type: 'interval',
                 stops: [
-                    [0, 'light green']
+                    [0, 'green']
                 ]
             },
             'circle-radius': {
@@ -225,7 +225,7 @@ function init() {
                 property: 'Week1',
                 //type: 'interval',
                 stops: [
-                    [0, 'light blue']
+                    [0, 'blue']
                 ]
             },
             'circle-radius': {
