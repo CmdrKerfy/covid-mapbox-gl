@@ -36,48 +36,48 @@ function init() {
     });
 
     // Healthcare Visits
-    map.addSource('VisitsPLHIV', {
+    map.addSource('visitsPLHIV', {
         type: 'geojson',
-        data: 'https://raw.githubusercontent.com/CmdrKerfy/covid-mapbox-gl/master/geojson/VisitsPLHIV.geojson',
+        data: 'https://raw.githubusercontent.com/CmdrKerfy/covid-mapbox-gl/master/geojson/VisitsPLHIV_2.geojson',
         buffer: 0,
         maxzoom: 12
     });
 
-    map.addSource('VisitsGenPOP', {
+    map.addSource('visitsGenPOP', {
         type: 'geojson',
         data: 'https://raw.githubusercontent.com/CmdrKerfy/covid-mapbox-gl/master/geojson/VisitsGenPOP.geojson',
         buffer: 0,
         maxzoom: 12
     });
 
-    map.addSource('VisitsTotalPOP', {
+    map.addSource('visitsTotalPOP', {
         type: 'geojson',
         data: 'https://raw.githubusercontent.com/CmdrKerfy/covid-mapbox-gl/master/geojson/VisitsTotalPOP.geojson',
         buffer: 0,
         maxzoom: 12
     });
 
-    // Healthcare Seen
-    map.addSource('PLHIVseenDoc', {
-        type: 'geojson',
-        data: 'https://raw.githubusercontent.com/CmdrKerfy/covid-mapbox-gl/master/geojson/PLHIVseenDoc.geojson',
-        buffer: 0,
-        maxzoom: 12
-    });
+    // // Healthcare Seen
+    // map.addSource('PLHIVseenDoc', {
+    //     type: 'geojson',
+    //     data: 'https://raw.githubusercontent.com/CmdrKerfy/covid-mapbox-gl/master/geojson/PLHIVseenDoc.geojson',
+    //     buffer: 0,
+    //     maxzoom: 12
+    // });
 
-    map.addSource('PLHIVseenMO', {
-        type: 'geojson',
-        data: 'https://raw.githubusercontent.com/CmdrKerfy/covid-mapbox-gl/master/geojson/PLHIVseenMO.geojson',
-        buffer: 0,
-        maxzoom: 12
-    });
+    // map.addSource('PLHIVseenMO', {
+    //     type: 'geojson',
+    //     data: 'https://raw.githubusercontent.com/CmdrKerfy/covid-mapbox-gl/master/geojson/PLHIVseenMO.geojson',
+    //     buffer: 0,
+    //     maxzoom: 12
+    // });
 
-    map.addSource('PLHIVseenNurse', {
-        type: 'geojson',
-        data: 'https://raw.githubusercontent.com/CmdrKerfy/covid-mapbox-gl/master/geojson/PLHIVseenNurse.geojson',
-        buffer: 0,
-        maxzoom: 12
-    });
+    // map.addSource('PLHIVseenNurse', {
+    //     type: 'geojson',
+    //     data: 'https://raw.githubusercontent.com/CmdrKerfy/covid-mapbox-gl/master/geojson/PLHIVseenNurse.geojson',
+    //     buffer: 0,
+    //     maxzoom: 12
+    // });
 
     if (window.location.search.indexOf('embed') !== -1) map.scrollZoom.disable();
 
@@ -174,22 +174,22 @@ function init() {
 
     // Visits by PLHIV
     map.addLayer({
-        'id': 'VisitsPLHIV',
+        'id': 'visitsPLHIV',
         'type': 'circle',
-        'source': 'VisitsPLHIV',
+        'source': 'visitsPLHIV',
         'layout': {
             'visibility': 'none'
         },
         'paint': {
             'circle-color': {
-                property: 'Week0',
+                property: 'Week1',
                 //type: 'interval',
                 stops: [
                     [0, 'light green']
                 ]
             },
             'circle-radius': {
-                property: 'Week0',
+                property: 'Week1',
                 base: 3,
                 type: 'interval',
                 stops: [
@@ -209,27 +209,27 @@ function init() {
             'circle-opacity': 0.8,
             'circle-blur': 0.25
         },
-        'filter': ['>=', 'Week0', 1]
+        'filter': ['>=', 'Week1', 1]
     }),
 
     // Visits by Gen Population
     map.addLayer({
-        'id': 'VisitsGenPOP',
+        'id': 'visitsGenPOP',
         'type': 'circle',
-        'source': 'VisitsGenPOP',
+        'source': 'visitsGenPOP',
         'layout': {
             'visibility': 'none'
         },
         'paint': {
             'circle-color': {
-                property: 'Week0',
+                property: 'Week1',
                 //type: 'interval',
                 stops: [
                     [0, 'light blue']
                 ]
             },
             'circle-radius': {
-                property: 'Week0',
+                property: 'Week1',
                 base: 3,
                 type: 'interval',
                 stops: [
@@ -248,27 +248,27 @@ function init() {
             'circle-opacity': 0.8,
             'circle-blur': 0.25
         },
-        'filter': ['>=', 'Week0', 1]
+        'filter': ['>=', 'Week1', 1]
     }),
 
     // Visits by Total Population
     map.addLayer({
-        'id': 'VisitsTotalPOP',
+        'id': 'visitsTotalPOP',
         'type': 'circle',
-        'source': 'VisitsTotalPOP',
+        'source': 'visitsTotalPOP',
         'layout': {
             'visibility': 'none'
         },
         'paint': {
             'circle-color': {
-                property: 'Week0',
+                property: 'Week1',
                 //type: 'interval',
                 stops: [
                     [0, 'yellow']
                 ]
             },
             'circle-radius': {
-                property: 'Week0',
+                property: 'Week1',
                 base: 3,
                 type: 'interval',
                 stops: [
@@ -287,7 +287,7 @@ function init() {
             'circle-opacity': 0.8,
             'circle-blur': 0.25
         },
-        'filter': ['>=', 'Week0', 1]
+        'filter': ['>=', 'Week1', 1]
     })
 };
 
@@ -432,7 +432,7 @@ document
         });
 
         // Healthcare Visits
-        map.setPaintProperty('VisitsPLHIV', 'circle-radius', {
+        map.setPaintProperty('visitsPLHIV', 'circle-radius', {
             property: property_val,
             base: 3,
             type: 'interval',
@@ -450,7 +450,7 @@ document
                 [20000, 55]
             ]
         });
-        map.setPaintProperty('VisitsGenPOP', 'circle-radius', {
+        map.setPaintProperty('visitsGenPOP', 'circle-radius', {
             property: property_val,
             base: 3,
             type: 'interval',
@@ -467,7 +467,7 @@ document
                 [450000, 55]
             ]
         });
-        map.setPaintProperty('VisitsTotalPOP', 'circle-radius', {
+        map.setPaintProperty('visitsTotalPOP', 'circle-radius', {
             property: property_val,
             base: 3,
             type: 'interval',
