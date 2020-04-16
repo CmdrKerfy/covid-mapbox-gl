@@ -23,7 +23,7 @@ function init() {
     // PLHIV
     map.addSource('PLHIV', {
         type: 'geojson',
-        data: 'Blank.geojson',
+        data: 'geojson/Blank.geojson',
         buffer: 0,
         maxzoom: 12
     });
@@ -91,6 +91,36 @@ function init() {
 
 // ADD LAYERS
 
+    // PLHIV
+    map.addLayer({
+        'id': 'PLHIV',
+        'type': 'circle',
+        'source': 'PLHIV',
+        'layout': {
+            'visibility': 'none'
+        },
+        'paint': {
+            'circle-color': {
+                property: 'Week0',
+                type: 'interval',
+                stops: [
+                    [1, 'light blue']
+                ]
+            },
+            'circle-radius': {
+                property: 'Week0',
+                base: 3,
+                type: 'interval',
+                stops: [
+                    [0, 0],
+                    [100, 3]
+                ]
+            },
+            'circle-opacity': 0.8,
+            'circle-blur': 0.25
+        },
+        'filter': ['>=', 'Week0', 1]
+    }), 
     // Doctors
     map.addLayer({
         'id': 'doctors',
