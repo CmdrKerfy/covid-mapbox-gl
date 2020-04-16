@@ -103,9 +103,9 @@ body {
     text-align: left;
 }
 
-.mapboxgl-ctrl-group {
+/* .mapboxgl-ctrl-group {
     -webkit-filter: invert(100%);
-}
+} */
 
 .loader {
     margin: -10px 0 0 -250px;

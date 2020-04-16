@@ -56,7 +56,13 @@ function init() {
                 property: 'Week0',
                 //type: 'interval',
                 stops: [
-                    [0, 'light blue']
+                    // [0, 'light blue']
+                    [0, 'dark red'],
+                    [25, 'red'],
+                    [50, 'orange'],
+                    [75, 'yellow'],
+                    [100, 'light green'],
+                    [147, 'green']
                 ]
             },
             'circle-radius': {
@@ -65,16 +71,16 @@ function init() {
                 type: 'interval',
                 stops: [
                     [0, 0],
-                    [5, 5],
+                    [1, 3],
                     [25, 10],
                     [50, 25],
                     [75, 35],
                     [100, 45],
-                    [150, 60]
+                    [150, 75]
                 ]
             },
             'circle-opacity': 0.8,
-            'circle-blur': 0.5
+            'circle-blur': 0.25
         },
         'filter': ['>=', 'Week0', 1]
     }, 'waterway-label');
@@ -91,7 +97,13 @@ function init() {
                 property: 'Week0',
                 //type: 'interval',
                 stops: [
-                    [1, 'light green']
+                    //[1, 'light green']
+                    [0, 'dark red'],
+                    [25, 'red'],
+                    [50, 'orange'],
+                    [75, 'yellow'],
+                    [100, 'light green'],
+                    [147, 'green']
                 ]
             },
             'circle-radius': {
@@ -101,16 +113,15 @@ function init() {
                 stops: [
                     [0, 0],
                     [1, 3],
-                    [5, 5],
                     [25, 10],
                     [50, 25],
                     [75, 35],
                     [100, 45],
-                    [150, 50]
+                    [120, 57]
                 ]
             },
             'circle-opacity': 0.8,
-            'circle-blur': 0.5
+            'circle-blur': 0.25
         },
         'filter': ['>=', 'Week0', 1]
     }, 'waterway-label');
@@ -187,8 +198,6 @@ prop.addEventListener('change', function() {
     }
 
 });
-
-
 // Set filter to first week
 filterBy(0);
 
@@ -210,13 +219,26 @@ document
             type: 'interval',
             stops: [
                 [0, 0],
-                [1, 3],
-                [10, 5],
+                [10, 3],
+                [15, 5],
                 [25, 10],
-                [50, 25],
+                [40, 25],
                 [75, 35],
                 [100, 45],
-                [150, 60]
+                [150, 75]
+            ]
+        });
+
+        map.setPaintProperty('doctors', 'circle-color', {
+            property: property_val,
+            type: 'interval',
+            stops: [
+                [0, 'dark red'],
+                [25, 'red'],
+                [50, 'orange'],
+                [75, 'yellow'],
+                [100, 'light green'],
+                [147, 'green']
             ]
         });
 
@@ -226,29 +248,29 @@ document
             type: 'interval',
             stops: [
                 [0, 0],
-                [1, 3],
-                [5, 5],
+                [10, 3],
+                [15, 5],
                 [25, 10],
-                [50, 25],
+                [40, 25],
                 [75, 35],
                 [100, 45],
-                [150, 50]
+                [150, 75]
             ]
         });
 
+        map.setPaintProperty('nurses', 'circle-color', {
+            property: property_val,
+            type: 'interval',
+            stops: [
+                [0, 'dark red'],
+                [25, 'red'],
+                [50, 'orange'],
+                [75, 'yellow'],
+                [100, 'light green'],
+                [147, 'green']
+            ]
+        });
+
+
         filterBy(week);
     });
-
-
-
-// 'circle-radius': {
-//     property: 'Week0',
-//     base: 3,
-//     type: 'interval',
-//     stops: [
-//         [1, 3],
-//         [50, 8],
-//         [100, 10],
-//         [150, 15]
-//     ]
-// },
