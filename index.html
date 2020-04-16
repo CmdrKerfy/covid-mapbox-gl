@@ -22,8 +22,11 @@
     <div class="map-overlay top">
         <div class="map-overlay-inner">
             <h2>WEEKLY PROJECTIONS</h2>
-            <label id="week"></label>
-            <input id="slider" type="range" min="0" max="6" step="1" value="0" />
+            <center>
+                <label id="week"></label>
+                <input id="slider" type="range" min="0" max="6" step="1" value="0" />
+            </center>
+        </div>
             <!--       
             <div class="map-overlay-inner">
             <div id="legend" class="legend">
@@ -31,12 +34,15 @@
             <div>Capacity/Visits</div>
             </div>
             -->
-
+            <div class="map-overlay-inner">
             <fieldset>
-                <select id='prop' name='prop'>
-                    <option value='doctors'>Doctor Capacity</option>
-                    <option value='nurses'>Nurse Capacity</option>
-                </select>
+                <center>
+                    <h3>Available Datasets:</h3>
+                    <select id='prop' name='prop'>
+                        <option value='doctors'>Doctor Capacity</option>
+                        <option value='nurses'>Nurse Capacity</option>
+                    </select>
+                </center>
             </fieldset>
         </div>
     </div>

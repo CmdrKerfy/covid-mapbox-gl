@@ -1,2 +1,0 @@
-# covid-mapbox-gl
- 
