@@ -121,6 +121,7 @@ function init() {
         },
         'filter': ['>=', 'Week0', 1]
     }), 
+
     // Doctors
     map.addLayer({
         'id': 'doctors',
@@ -341,7 +342,7 @@ function init() {
                 property: 'Week1',
                 //type: 'interval',
                 stops: [
-                    [0, 'yellow']
+                    [0, 'black']
                 ]
             },
             'circle-radius': {
@@ -350,15 +351,14 @@ function init() {
                 type: 'interval',
                 stops: [
                     [0, 0],
-                    [40000, 5],
-                    [50000, 7],
-                    [60000, 10],
-                    [75000, 20],
-                    [100000, 30],
-                    [200000, 40],
-                    [300000, 50],
-                    [450000, 55],
-                    [500000, 60]
+                    [3, 3],
+                    [5, 5],
+                    [7, 10],
+                    [10, 13],
+                    [12, 15],
+                    [15, 17],
+                    [20, 20],
+                    [25, 25]
                 ]
             },
             'circle-opacity': 0.8,
@@ -380,7 +380,7 @@ function init() {
                 property: 'Week1',
                 //type: 'interval',
                 stops: [
-                    [0, 'yellow']
+                    [0, 'purple']
                 ]
             },
             'circle-radius': {
@@ -389,15 +389,12 @@ function init() {
                 type: 'interval',
                 stops: [
                     [0, 0],
-                    [40000, 5],
-                    [50000, 7],
-                    [60000, 10],
-                    [75000, 20],
-                    [100000, 30],
-                    [200000, 40],
-                    [300000, 50],
-                    [450000, 55],
-                    [500000, 60]
+                    [2, 3],
+                    [4, 5],
+                    [6, 7],
+                    [8, 10],
+                    [10, 15],
+                    [15, 20]
                 ]
             },
             'circle-opacity': 0.8,
@@ -419,7 +416,7 @@ function init() {
                 property: 'Week1',
                 //type: 'interval',
                 stops: [
-                    [0, 'yellow']
+                    [0, 'orange']
                 ]
             },
             'circle-radius': {
@@ -428,15 +425,12 @@ function init() {
                 type: 'interval',
                 stops: [
                     [0, 0],
-                    [40000, 5],
-                    [50000, 7],
-                    [60000, 10],
-                    [75000, 20],
-                    [100000, 30],
-                    [200000, 40],
-                    [300000, 50],
-                    [450000, 55],
-                    [500000, 60]
+                    [5, 7],
+                    [10, 10],
+                    [15, 13],
+                    [20, 17],
+                    [25, 20],
+                    [30, 25]
                 ]
             },
             'circle-opacity': 0.8,
@@ -638,6 +632,52 @@ document
                 [300000, 50],
                 [450000, 55],
                 [500000, 60]
+            ]
+        });
+
+        // PLHIV Seeing Specialists
+        map.setPaintProperty('PLHIVseenDoc', 'circle-radius', {
+            property: property_val,
+            base: 3,
+            type: 'interval',
+            stops: [
+                [0, 0],
+                [3, 3],
+                [5, 5],
+                [7, 10],
+                [10, 13],
+                [12, 15],
+                [15, 17],
+                [20, 20],
+                [25, 25]
+            ]
+        });
+        map.setPaintProperty('PLHIVseenMO', 'circle-radius', {
+            property: property_val,
+            base: 3,
+            type: 'interval',
+            stops: [
+                [0, 0],
+                [2, 3],
+                [4, 5],
+                [6, 7],
+                [8, 10],
+                [10, 15],
+                [15, 20]
+            ]
+        });
+        map.setPaintProperty('PLHIVseenNurse', 'circle-radius', {
+            property: property_val,
+            base: 3,
+            type: 'interval',
+            stops: [
+                [0, 0],
+                [5, 7],
+                [10, 10],
+                [15, 13],
+                [20, 17],
+                [25, 20],
+                [30, 25]
             ]
         });
 
