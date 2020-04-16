@@ -4,7 +4,7 @@ var map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/kerfy/ck92uv5lh0o9w1imxn0kbjim9',
     center: [37.477968, 0.090719],
-    zoom: 5.75,
+    zoom: 7,
     minZoom: 5.50,
     maxZoom: 7,
     //pitch:
