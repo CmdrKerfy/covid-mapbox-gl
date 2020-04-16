@@ -20,6 +20,14 @@ function filterBy(week) {
 // LOAD LAYERS
 function init() {
 
+    // PLHIV
+    map.addSource('PLHIV', {
+        type: 'geojson',
+        data: 'Blank.geojson',
+        buffer: 0,
+        maxzoom: 12
+    });
+
     // Healthcare Staff Capacity
     map.addSource('doctors', {
         type: 'geojson',
@@ -57,27 +65,27 @@ function init() {
         maxzoom: 12
     });
 
-    // // Healthcare Seen
-    // map.addSource('PLHIVseenDoc', {
-    //     type: 'geojson',
-    //     data: 'https://raw.githubusercontent.com/CmdrKerfy/covid-mapbox-gl/master/geojson/PLHIVseenDoc.geojson',
-    //     buffer: 0,
-    //     maxzoom: 12
-    // });
+    // Healthcare Seen
+    map.addSource('PLHIVseenDoc', {
+        type: 'geojson',
+        data: 'https://raw.githubusercontent.com/CmdrKerfy/covid-mapbox-gl/master/geojson/PLHIVseenDoc.geojson',
+        buffer: 0,
+        maxzoom: 12
+    });
 
-    // map.addSource('PLHIVseenMO', {
-    //     type: 'geojson',
-    //     data: 'https://raw.githubusercontent.com/CmdrKerfy/covid-mapbox-gl/master/geojson/PLHIVseenMO.geojson',
-    //     buffer: 0,
-    //     maxzoom: 12
-    // });
+    map.addSource('PLHIVseenMO', {
+        type: 'geojson',
+        data: 'https://raw.githubusercontent.com/CmdrKerfy/covid-mapbox-gl/master/geojson/PLHIVseenMO.geojson',
+        buffer: 0,
+        maxzoom: 12
+    });
 
-    // map.addSource('PLHIVseenNurse', {
-    //     type: 'geojson',
-    //     data: 'https://raw.githubusercontent.com/CmdrKerfy/covid-mapbox-gl/master/geojson/PLHIVseenNurse.geojson',
-    //     buffer: 0,
-    //     maxzoom: 12
-    // });
+    map.addSource('PLHIVseenNurse', {
+        type: 'geojson',
+        data: 'https://raw.githubusercontent.com/CmdrKerfy/covid-mapbox-gl/master/geojson/PLHIVseenNurse.geojson',
+        buffer: 0,
+        maxzoom: 12
+    });
 
     if (window.location.search.indexOf('embed') !== -1) map.scrollZoom.disable();
 
@@ -288,7 +296,125 @@ function init() {
             'circle-blur': 0.25
         },
         'filter': ['>=', 'Week1', 1]
+    }),
+
+    // PLHIV Seen by a Doctor
+    map.addLayer({
+        'id': 'PLHIVseenDoc',
+        'type': 'circle',
+        'source': 'PLHIVseenDoc',
+        'layout': {
+            'visibility': 'none'
+        },
+        'paint': {
+            'circle-color': {
+                property: 'Week1',
+                //type: 'interval',
+                stops: [
+                    [0, 'yellow']
+                ]
+            },
+            'circle-radius': {
+                property: 'Week1',
+                base: 3,
+                type: 'interval',
+                stops: [
+                    [0, 0],
+                    [40000, 5],
+                    [50000, 7],
+                    [60000, 10],
+                    [75000, 20],
+                    [100000, 30],
+                    [200000, 40],
+                    [300000, 50],
+                    [450000, 55],
+                    [500000, 60]
+                ]
+            },
+            'circle-opacity': 0.8,
+            'circle-blur': 0.25
+        },
+        'filter': ['>=', 'Week1', 1]
+    }),
+
+    // PLHIV Seen by a Medical Officer
+    map.addLayer({
+        'id': 'PLHIVseenMO',
+        'type': 'circle',
+        'source': 'PLHIVseenMO',
+        'layout': {
+            'visibility': 'none'
+        },
+        'paint': {
+            'circle-color': {
+                property: 'Week1',
+                //type: 'interval',
+                stops: [
+                    [0, 'yellow']
+                ]
+            },
+            'circle-radius': {
+                property: 'Week1',
+                base: 3,
+                type: 'interval',
+                stops: [
+                    [0, 0],
+                    [40000, 5],
+                    [50000, 7],
+                    [60000, 10],
+                    [75000, 20],
+                    [100000, 30],
+                    [200000, 40],
+                    [300000, 50],
+                    [450000, 55],
+                    [500000, 60]
+                ]
+            },
+            'circle-opacity': 0.8,
+            'circle-blur': 0.25
+        },
+        'filter': ['>=', 'Week1', 1]
+    }),
+
+    //  PLHIV Seen by a Nurse
+    map.addLayer({
+        'id': 'PLHIVseenNurse',
+        'type': 'circle',
+        'source': 'PLHIVseenNurse',
+        'layout': {
+            'visibility': 'none'
+        },
+        'paint': {
+            'circle-color': {
+                property: 'Week1',
+                //type: 'interval',
+                stops: [
+                    [0, 'yellow']
+                ]
+            },
+            'circle-radius': {
+                property: 'Week1',
+                base: 3,
+                type: 'interval',
+                stops: [
+                    [0, 0],
+                    [40000, 5],
+                    [50000, 7],
+                    [60000, 10],
+                    [75000, 20],
+                    [100000, 30],
+                    [200000, 40],
+                    [300000, 50],
+                    [450000, 55],
+                    [500000, 60]
+                ]
+            },
+            'circle-opacity': 0.8,
+            'circle-blur': 0.25
+        },
+        'filter': ['>=', 'Week1', 1]
     })
+
 };
 
 //HIDE LOADING BAR 
