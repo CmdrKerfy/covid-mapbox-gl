@@ -104,480 +104,480 @@ function init() {
 
     if (window.location.search.indexOf('embed') !== -1) map.scrollZoom.disable();
 
-// ADD LAYERS
+    // ADD LAYERS
 
     // PLHIV
     map.addLayer({
-        'id': 'PLHIV',
-        'type': 'circle',
-        'source': 'PLHIV',
-        'layout': {
-            'visibility': 'none'
-        },
-        'paint': {
-            'circle-color': {
-                property: 'Week0',
-                type: 'interval',
-                stops: [
-                    [1, 'light blue']
-                ]
+            'id': 'PLHIV',
+            'type': 'circle',
+            'source': 'PLHIV',
+            'layout': {
+                'visibility': 'none'
             },
-            'circle-radius': {
-                property: 'Week0',
-                base: 3,
-                type: 'interval',
-                stops: [
-                    [0, 0],
-                    [100, 3]
-                ]
+            'paint': {
+                'circle-color': {
+                    property: 'Week0',
+                    type: 'interval',
+                    stops: [
+                        [1, 'light blue']
+                    ]
+                },
+                'circle-radius': {
+                    property: 'Week0',
+                    base: 3,
+                    type: 'interval',
+                    stops: [
+                        [0, 0],
+                        [100, 3]
+                    ]
+                },
+                'circle-opacity': 0.8,
+                'circle-blur': 0.25
             },
-            'circle-opacity': 0.8,
-            'circle-blur': 0.25
-        },
-        'filter': ['>=', 'Week0', 1]
-    }), 
+            'filter': ['>=', 'Week0', 1]
+        }),
 
-    // Doctors
-    map.addLayer({
-        'id': 'doctors',
-        'type': 'circle',
-        'source': 'doctors',
-        'layout': {
-            'visibility': 'none'
-        },
-        'paint': {
-            'circle-color': {
-                property: 'Week0',
-                type: 'interval',
-                stops: [
-                    // [0, 'light blue']
-                    [0, 'red'],
-                    [25, 'orange red'],
-                    [50, 'orange'],
-                    [75, 'yellow'],
-                    [100, 'light green'],
-                    [147, 'green']
-                ]
+        // Doctors
+        map.addLayer({
+            'id': 'doctors',
+            'type': 'circle',
+            'source': 'doctors',
+            'layout': {
+                'visibility': 'none'
             },
-            'circle-radius': {
-                property: 'Week0',
-                base: 3,
-                type: 'interval',
-                stops: [
-                    [0, 0],
-                    [10, 3],
-                    [15, 5],
-                    [25, 10],
-                    [40, 25],
-                    [75, 35],
-                    [100, 45],
-                    [150, 75]
-                ]
+            'paint': {
+                'circle-color': {
+                    property: 'Week0',
+                    type: 'interval',
+                    stops: [
+                        // [0, 'light blue']
+                        [0, 'red'],
+                        [25, 'orange red'],
+                        [50, 'orange'],
+                        [75, 'yellow'],
+                        [100, 'light green'],
+                        [147, 'green']
+                    ]
+                },
+                'circle-radius': {
+                    property: 'Week0',
+                    base: 3,
+                    type: 'interval',
+                    stops: [
+                        [0, 0],
+                        [10, 3],
+                        [15, 5],
+                        [25, 10],
+                        [40, 25],
+                        [75, 35],
+                        [100, 45],
+                        [150, 75]
+                    ]
+                },
+                'circle-opacity': 0.8,
+                'circle-blur': 0.25
             },
-            'circle-opacity': 0.8,
-            'circle-blur': 0.25
-        },
-        'filter': ['>=', 'Week0', 1]
-    }), 
-    // Nurses
-    map.addLayer({
-        'id': 'nurses',
-        'type': 'circle',
-        'source': 'nurses',
-        'layout': {
-            'visibility': 'none'
-        },
-        'paint': {
-            'circle-color': {
-                property: 'Week0',
-                type: 'interval',
-                stops: [
-                    //[1, 'light green']
-                    [0, 'red'],
-                    [25, 'orange red'],
-                    [40, 'orange'],
-                    [60, 'yellow'],
-                    [80, 'light green'],
-                    [120, 'green']
-                ]
+            'filter': ['>=', 'Week0', 1]
+        }),
+        // Nurses
+        map.addLayer({
+            'id': 'nurses',
+            'type': 'circle',
+            'source': 'nurses',
+            'layout': {
+                'visibility': 'none'
             },
-            'circle-radius': {
-                property: 'Week0',
-                base: 3,
-                type: 'interval',
-                stops: [
-                    [0, 0],
-                    [10, 3],
-                    [12, 5],
-                    [15, 7],
-                    [20, 10],
-                    [25, 15],
-                    [30, 20],
-                    [35, 25],
-                    [40, 30],
-                    [45, 35],
-                    [75, 45],
-                    [120, 55]
-                ]
+            'paint': {
+                'circle-color': {
+                    property: 'Week0',
+                    type: 'interval',
+                    stops: [
+                        //[1, 'light green']
+                        [0, 'red'],
+                        [25, 'orange red'],
+                        [40, 'orange'],
+                        [60, 'yellow'],
+                        [80, 'light green'],
+                        [120, 'green']
+                    ]
+                },
+                'circle-radius': {
+                    property: 'Week0',
+                    base: 3,
+                    type: 'interval',
+                    stops: [
+                        [0, 0],
+                        [10, 3],
+                        [12, 5],
+                        [15, 7],
+                        [20, 10],
+                        [25, 15],
+                        [30, 20],
+                        [35, 25],
+                        [40, 30],
+                        [45, 35],
+                        [75, 45],
+                        [120, 55]
+                    ]
+                },
+                'circle-opacity': 0.8,
+                'circle-blur': 0.25
             },
-            'circle-opacity': 0.8,
-            'circle-blur': 0.25
-        },
-        'filter': ['>=', 'Week0', 1]
-    }),
+            'filter': ['>=', 'Week0', 1]
+        }),
 
-    // Visits by PLHIV
-    map.addLayer({
-        'id': 'visitsPLHIV',
-        'type': 'circle',
-        'source': 'visitsPLHIV',
-        'layout': {
-            'visibility': 'none'
-        },
-        'paint': {
-            'circle-color': {
-                property: 'Week1',
-                //type: 'interval',
-                stops: [
-                    [0, 'green']
-                ]
+        // Visits by PLHIV
+        map.addLayer({
+            'id': 'visitsPLHIV',
+            'type': 'circle',
+            'source': 'visitsPLHIV',
+            'layout': {
+                'visibility': 'none'
             },
-            'circle-radius': {
-                property: 'Week1',
-                base: 3,
-                type: 'interval',
-                stops: [
-                    [0, 0],
-                    [1500, 3],
-                    [2500, 5],
-                    [3000, 7],
-                    [4000, 10],
-                    [7000, 15],
-                    [8000, 20],
-                    [9000, 30],
-                    [10000, 35],
-                    [15000, 45],
-                    [20000, 55]
-                ]
+            'paint': {
+                'circle-color': {
+                    property: 'Week1',
+                    //type: 'interval',
+                    stops: [
+                        [0, 'green']
+                    ]
+                },
+                'circle-radius': {
+                    property: 'Week1',
+                    base: 3,
+                    type: 'interval',
+                    stops: [
+                        [0, 0],
+                        [1500, 3],
+                        [2500, 5],
+                        [3000, 7],
+                        [4000, 10],
+                        [7000, 15],
+                        [8000, 20],
+                        [9000, 30],
+                        [10000, 35],
+                        [15000, 45],
+                        [20000, 55]
+                    ]
+                },
+                'circle-opacity': 0.8,
+                'circle-blur': 0.25
             },
-            'circle-opacity': 0.8,
-            'circle-blur': 0.25
-        },
-        'filter': ['>=', 'Week1', 1]
-    }),
+            'filter': ['>=', 'Week1', 1]
+        }),
 
-    // Visits by Gen Population
-    map.addLayer({
-        'id': 'visitsGenPOP',
-        'type': 'circle',
-        'source': 'visitsGenPOP',
-        'layout': {
-            'visibility': 'none'
-        },
-        'paint': {
-            'circle-color': {
-                property: 'Week1',
-                //type: 'interval',
-                stops: [
-                    [0, 'blue']
-                ]
+        // Visits by Gen Population
+        map.addLayer({
+            'id': 'visitsGenPOP',
+            'type': 'circle',
+            'source': 'visitsGenPOP',
+            'layout': {
+                'visibility': 'none'
             },
-            'circle-radius': {
-                property: 'Week1',
-                base: 3,
-                type: 'interval',
-                stops: [
-                    [0, 0],
-                    [30000, 3],
-                    [40000, 5],
-                    [50000, 7],
-                    [60000, 10],
-                    [75000, 20],
-                    [100000, 30],
-                    [200000, 40],
-                    [300000, 50],
-                    [450000, 55]
-                ]
+            'paint': {
+                'circle-color': {
+                    property: 'Week1',
+                    //type: 'interval',
+                    stops: [
+                        [0, 'blue']
+                    ]
+                },
+                'circle-radius': {
+                    property: 'Week1',
+                    base: 3,
+                    type: 'interval',
+                    stops: [
+                        [0, 0],
+                        [30000, 3],
+                        [40000, 5],
+                        [50000, 7],
+                        [60000, 10],
+                        [75000, 20],
+                        [100000, 30],
+                        [200000, 40],
+                        [300000, 50],
+                        [450000, 55]
+                    ]
+                },
+                'circle-opacity': 0.8,
+                'circle-blur': 0.25
             },
-            'circle-opacity': 0.8,
-            'circle-blur': 0.25
-        },
-        'filter': ['>=', 'Week1', 1]
-    }),
+            'filter': ['>=', 'Week1', 1]
+        }),
 
-    // Visits by Total Population
-    map.addLayer({
-        'id': 'visitsTotalPOP',
-        'type': 'circle',
-        'source': 'visitsTotalPOP',
-        'layout': {
-            'visibility': 'none'
-        },
-        'paint': {
-            'circle-color': {
-                property: 'Week1',
-                //type: 'interval',
-                stops: [
-                    [0, 'yellow']
-                ]
+        // Visits by Total Population
+        map.addLayer({
+            'id': 'visitsTotalPOP',
+            'type': 'circle',
+            'source': 'visitsTotalPOP',
+            'layout': {
+                'visibility': 'none'
             },
-            'circle-radius': {
-                property: 'Week1',
-                base: 3,
-                type: 'interval',
-                stops: [
-                    [0, 0],
-                    [40000, 5],
-                    [50000, 7],
-                    [60000, 10],
-                    [75000, 20],
-                    [100000, 30],
-                    [200000, 40],
-                    [300000, 50],
-                    [450000, 55],
-                    [500000, 60]
-                ]
+            'paint': {
+                'circle-color': {
+                    property: 'Week1',
+                    //type: 'interval',
+                    stops: [
+                        [0, 'yellow']
+                    ]
+                },
+                'circle-radius': {
+                    property: 'Week1',
+                    base: 3,
+                    type: 'interval',
+                    stops: [
+                        [0, 0],
+                        [40000, 5],
+                        [50000, 7],
+                        [60000, 10],
+                        [75000, 20],
+                        [100000, 30],
+                        [200000, 40],
+                        [300000, 50],
+                        [450000, 55],
+                        [500000, 60]
+                    ]
+                },
+                'circle-opacity': 0.8,
+                'circle-blur': 0.25
             },
-            'circle-opacity': 0.8,
-            'circle-blur': 0.25
-        },
-        'filter': ['>=', 'Week1', 1]
-    }),
+            'filter': ['>=', 'Week1', 1]
+        }),
 
-    // PLHIV Seen by a Doctor
-    map.addLayer({
-        'id': 'PLHIVseenDoc',
-        'type': 'circle',
-        'source': 'PLHIVseenDoc',
-        'layout': {
-            'visibility': 'none'
-        },
-        'paint': {
-            'circle-color': {
-                property: 'Week1',
-                //type: 'interval',
-                stops: [
-                    [0, 'black']
-                ]
+        // PLHIV Seen by a Doctor
+        map.addLayer({
+            'id': 'PLHIVseenDoc',
+            'type': 'circle',
+            'source': 'PLHIVseenDoc',
+            'layout': {
+                'visibility': 'none'
             },
-            'circle-radius': {
-                property: 'Week1',
-                base: 3,
-                type: 'interval',
-                stops: [
-                    [0, 0],
-                    [3, 3],
-                    [5, 5],
-                    [7, 10],
-                    [10, 13],
-                    [12, 15],
-                    [15, 17],
-                    [20, 20],
-                    [25, 25]
-                ]
+            'paint': {
+                'circle-color': {
+                    property: 'Week1',
+                    //type: 'interval',
+                    stops: [
+                        [0, 'black']
+                    ]
+                },
+                'circle-radius': {
+                    property: 'Week1',
+                    base: 3,
+                    type: 'interval',
+                    stops: [
+                        [0, 0],
+                        [3, 3],
+                        [5, 5],
+                        [7, 10],
+                        [10, 13],
+                        [12, 15],
+                        [15, 17],
+                        [20, 20],
+                        [25, 25]
+                    ]
+                },
+                'circle-opacity': 0.8,
+                'circle-blur': 0.25
             },
-            'circle-opacity': 0.8,
-            'circle-blur': 0.25
-        },
-        'filter': ['>=', 'Week1', 1]
-    }),
+            'filter': ['>=', 'Week1', 1]
+        }),
 
-    // PLHIV Seen by a Medical Officer
-    map.addLayer({
-        'id': 'PLHIVseenMO',
-        'type': 'circle',
-        'source': 'PLHIVseenMO',
-        'layout': {
-            'visibility': 'none'
-        },
-        'paint': {
-            'circle-color': {
-                property: 'Week1',
-                //type: 'interval',
-                stops: [
-                    [0, 'purple']
-                ]
+        // PLHIV Seen by a Medical Officer
+        map.addLayer({
+            'id': 'PLHIVseenMO',
+            'type': 'circle',
+            'source': 'PLHIVseenMO',
+            'layout': {
+                'visibility': 'none'
             },
-            'circle-radius': {
-                property: 'Week1',
-                base: 3,
-                type: 'interval',
-                stops: [
-                    [0, 0],
-                    [2, 3],
-                    [4, 5],
-                    [6, 7],
-                    [8, 10],
-                    [10, 15],
-                    [15, 20]
-                ]
+            'paint': {
+                'circle-color': {
+                    property: 'Week1',
+                    //type: 'interval',
+                    stops: [
+                        [0, 'purple']
+                    ]
+                },
+                'circle-radius': {
+                    property: 'Week1',
+                    base: 3,
+                    type: 'interval',
+                    stops: [
+                        [0, 0],
+                        [2, 3],
+                        [4, 5],
+                        [6, 7],
+                        [8, 10],
+                        [10, 15],
+                        [15, 20]
+                    ]
+                },
+                'circle-opacity': 0.8,
+                'circle-blur': 0.25
             },
-            'circle-opacity': 0.8,
-            'circle-blur': 0.25
-        },
-        'filter': ['>=', 'Week1', 1]
-    }),
+            'filter': ['>=', 'Week1', 1]
+        }),
 
-    //  PLHIV Seen by a Nurse
-    map.addLayer({
-        'id': 'PLHIVseenNurse',
-        'type': 'circle',
-        'source': 'PLHIVseenNurse',
-        'layout': {
-            'visibility': 'none'
-        },
-        'paint': {
-            'circle-color': {
-                property: 'Week1',
-                //type: 'interval',
-                stops: [
-                    [0, 'orange']
-                ]
+        //  PLHIV Seen by a Nurse
+        map.addLayer({
+            'id': 'PLHIVseenNurse',
+            'type': 'circle',
+            'source': 'PLHIVseenNurse',
+            'layout': {
+                'visibility': 'none'
             },
-            'circle-radius': {
-                property: 'Week1',
-                base: 3,
-                type: 'interval',
-                stops: [
-                    [0, 0],
-                    [5, 7],
-                    [10, 10],
-                    [15, 13],
-                    [20, 17],
-                    [25, 20],
-                    [30, 25]
-                ]
+            'paint': {
+                'circle-color': {
+                    property: 'Week1',
+                    //type: 'interval',
+                    stops: [
+                        [0, 'orange']
+                    ]
+                },
+                'circle-radius': {
+                    property: 'Week1',
+                    base: 3,
+                    type: 'interval',
+                    stops: [
+                        [0, 0],
+                        [5, 7],
+                        [10, 10],
+                        [15, 13],
+                        [20, 17],
+                        [25, 20],
+                        [30, 25]
+                    ]
+                },
+                'circle-opacity': 0.8,
+                'circle-blur': 0.25
             },
-            'circle-opacity': 0.8,
-            'circle-blur': 0.25
-        },
-        'filter': ['>=', 'Week1', 1]
-    })
+            'filter': ['>=', 'Week1', 1]
+        })
 
     // Total POP Seen by a Doctor
     map.addLayer({
-        'id': 'TotalPOPseenDoc',
-        'type': 'circle',
-        'source': 'TotalPOPseenDoc',
-        'layout': {
-            'visibility': 'none'
-        },
-        'paint': {
-            'circle-color': {
-                property: 'Week1',
-                //type: 'interval',
-                stops: [
-                    [0, 'black']
-                ]
+            'id': 'TotalPOPseenDoc',
+            'type': 'circle',
+            'source': 'TotalPOPseenDoc',
+            'layout': {
+                'visibility': 'none'
             },
-            'circle-radius': {
-                property: 'Week1',
-                base: 3,
-                type: 'interval',
-                stops: [
-                    [0, 0],
-                    [30, 3],
-                    [50, 5],
-                    [75, 10],
-                    [100, 13],
-                    [125, 15],
-                    [150, 17],
-                    [200, 20],
-                    [250, 25],
-                    [300, 27],
-                    [400, 30],
-                    [500, 33]
-                ]
+            'paint': {
+                'circle-color': {
+                    property: 'Week1',
+                    //type: 'interval',
+                    stops: [
+                        [0, 'black']
+                    ]
+                },
+                'circle-radius': {
+                    property: 'Week1',
+                    base: 3,
+                    type: 'interval',
+                    stops: [
+                        [0, 0],
+                        [30, 3],
+                        [50, 5],
+                        [75, 10],
+                        [100, 13],
+                        [125, 15],
+                        [150, 17],
+                        [200, 20],
+                        [250, 25],
+                        [300, 27],
+                        [400, 30],
+                        [500, 33]
+                    ]
+                },
+                'circle-opacity': 0.8,
+                'circle-blur': 0.25
             },
-            'circle-opacity': 0.8,
-            'circle-blur': 0.25
-        },
-        'filter': ['>=', 'Week1', 1]
-    }),
+            'filter': ['>=', 'Week1', 1]
+        }),
 
-    // Total POP Seen by a Medical Officer
-    map.addLayer({
-        'id': 'TotalPOPseenMO',
-        'type': 'circle',
-        'source': 'TotalPOPseenMO',
-        'layout': {
-            'visibility': 'none'
-        },
-        'paint': {
-            'circle-color': {
-                property: 'Week1',
-                //type: 'interval',
-                stops: [
-                    [0, 'purple']
-                ]
+        // Total POP Seen by a Medical Officer
+        map.addLayer({
+            'id': 'TotalPOPseenMO',
+            'type': 'circle',
+            'source': 'TotalPOPseenMO',
+            'layout': {
+                'visibility': 'none'
             },
-            'circle-radius': {
-                property: 'Week1',
-                base: 3,
-                type: 'interval',
-                stops: [
-                    [0, 0],
-                    [20, 3],
-                    [30, 5],
-                    [40, 10],
-                    [50, 13],
-                    [60, 15],
-                    [70, 17],
-                    [80, 20],
-                    [90, 25],
-                    [100, 27],
-                    [150, 30],
-                    [250, 35]
-                ]
+            'paint': {
+                'circle-color': {
+                    property: 'Week1',
+                    //type: 'interval',
+                    stops: [
+                        [0, 'purple']
+                    ]
+                },
+                'circle-radius': {
+                    property: 'Week1',
+                    base: 3,
+                    type: 'interval',
+                    stops: [
+                        [0, 0],
+                        [20, 3],
+                        [30, 5],
+                        [40, 10],
+                        [50, 13],
+                        [60, 15],
+                        [70, 17],
+                        [80, 20],
+                        [90, 25],
+                        [100, 27],
+                        [150, 30],
+                        [250, 35]
+                    ]
+                },
+                'circle-opacity': 0.8,
+                'circle-blur': 0.25
             },
-            'circle-opacity': 0.8,
-            'circle-blur': 0.25
-        },
-        'filter': ['>=', 'Week1', 1]
-    }),
+            'filter': ['>=', 'Week1', 1]
+        }),
 
-    //  Total POP Seen by a Nurse
-    map.addLayer({
-        'id': 'TotalPOPseenNurse',
-        'type': 'circle',
-        'source': 'TotalPOPseenNurse',
-        'layout': {
-            'visibility': 'none'
-        },
-        'paint': {
-            'circle-color': {
-                property: 'Week1',
-                //type: 'interval',
-                stops: [
-                    [0, 'orange']
-                ]
+        //  Total POP Seen by a Nurse
+        map.addLayer({
+            'id': 'TotalPOPseenNurse',
+            'type': 'circle',
+            'source': 'TotalPOPseenNurse',
+            'layout': {
+                'visibility': 'none'
             },
-            'circle-radius': {
-                property: 'Week1',
-                base: 3,
-                type: 'interval',
-                stops: [
-                    [0, 0],
-                    [20, 3],
-                    [30, 5],
-                    [40, 10],
-                    [50, 13],
-                    [60, 15],
-                    [70, 17],
-                    [80, 20],
-                    [90, 25],
-                    [100, 27],
-                    [150, 30],
-                    [250, 33],
-                    [300, 35],
-                    [400, 37]
-                ]
+            'paint': {
+                'circle-color': {
+                    property: 'Week1',
+                    //type: 'interval',
+                    stops: [
+                        [0, 'orange']
+                    ]
+                },
+                'circle-radius': {
+                    property: 'Week1',
+                    base: 3,
+                    type: 'interval',
+                    stops: [
+                        [0, 0],
+                        [20, 3],
+                        [30, 5],
+                        [40, 10],
+                        [50, 13],
+                        [60, 15],
+                        [70, 17],
+                        [80, 20],
+                        [90, 25],
+                        [100, 27],
+                        [150, 30],
+                        [250, 33],
+                        [300, 35],
+                        [400, 37]
+                    ]
+                },
+                'circle-opacity': 0.8,
+                'circle-blur': 0.25
             },
-            'circle-opacity': 0.8,
-            'circle-blur': 0.25
-        },
-        'filter': ['>=', 'Week1', 1]
-    })
+            'filter': ['>=', 'Week1', 1]
+        })
 
 };
 
@@ -627,9 +627,9 @@ map.once('style.load', function(e) {
 });
 
 // TIME SLIDER PROPERTIES
-var prop = document.getElementById('prop');
+var prop = document.getElementById('slider');
 prop.addEventListener('change', function() {
-    console.log('dropdown changed: ' + prop.value);
+    console.log('position changed: ' + prop.value);
 
     var clickedLayer = prop.value;
     var visibility = map.getLayoutProperty(clickedLayer, 'visibility');
@@ -650,6 +650,42 @@ prop.addEventListener('change', function() {
 });
 // Set filter to first week
 filterBy(0);
+
+
+var changedText = document.getElementById('changed');
+
+function listQ() {
+    console.log(this.value)
+    changedText.textContent = this.value;
+
+    //new code
+    console.log('print options');
+    console.log(document.getElementById("datasets_input"));
+
+    dataset_options = document.getElementById("datasets_input").options;
+
+    for (var i = 0; i < dataset_options.length; i++) {
+        current_val = dataset_options[i].value;
+
+        //if current_val has '_' then:
+        if (current_val.includes('_')) {
+            //console.log('cur val contains _');
+            //trim after _
+            //console.log(current_val.substring(0, current_val.indexOf('_')))
+            current_val = current_val.substring(0, current_val.indexOf('_'));
+        }
+
+        new_val = current_val + '_' + this.value;
+        dataset_options[i].value = new_val;
+        console.log(new_val);
+
+    }
+
+
+}
+
+document.getElementById("scenario_input").onchange = listQ;
+
 
 document
     .getElementById('slider')
@@ -883,4 +919,9 @@ document
         });
 
         filterBy(week);
+
+
+
+
+
     });
